@@ -1,0 +1,5 @@
+Added Component: Designator=logo(OMIDSPACE - topsolder)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Our Website:"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.spaceomid.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Designed by"; Value = "MJKhodami"; VariantName = "[No Variations]"
+Added Member To Class: ClassName=ESP32headerboard Member=Component logo OmidSpace

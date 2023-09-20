@@ -1,0 +1,537 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">20/09/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:37:47</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc" class="file"><acronym title="E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc">E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">67</td></tr>
+</table>
+</td>
+</table><a name="IDA2BM1LABVQSZPRNNVUABVC1QWLZCFPZWFJJSDGLJDFY5X2R4EEHD"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGJ3ZBEMRQU0KP252FPBGLF2VLJTJPDEWIJJKL2FIP32V1ABWYC1F">Clearance Constraint (Gap=0.3mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPFO132PD2B0CJRNFEVDEC04KPMAJRTNNBBKMQO1JKD4PUVKCUKM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDK4VWY4X21YMJMJC2TLYITQE4AFTUKPJOIKD0EADJB0ELU4GZXHXF">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPWOCBJC20RJGRKJ22ZTY14GLLSJVSH1GJH1P3M1NOPJIAJV53EB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMNDSV433ROWFCAVBN4LU1Y3BLDWOMKMQDVAQ3LDELLDR2LZ2WWJH">Width Constraint (Min=0.3mm) (Max=1mm) (Preferred=0.5mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKWK2S40VYPX2FJTXII3XMDOC1N2TFPEPZAVBV1CIPGQCMYXZ2GFP">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDUR4FLJY204K4JHCLWN1PTPLLKEKOWV4G5XQ3HGDJOD4VCAD4N1DN">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1VT2IVZK1QOTL010XHDYPFE1K5QMZBL1M3LNTCO5M0ZARKMBZIP">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSZKNLUXMQCP3I2UFIUDGKMTWHOLT1WWA0FPUD2FF10D424EG4LGI">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">37</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDE3RYCIF1CORGNSNE43WY2VSU4KZSRJ4SP0QDABRQRZUT51HGYUE">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBY1B4BCT3SODBTXJC21KFKAPJP44QTCWRWTLNWORXVT41S4IH2ME">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">14</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDXNERDHSLMEKFCF4EZHUS450DZMYYSMOEWXJSOHMRC5ACTCFZY2C">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDX4CXJ5KKNNPGCNGWCCTT3AYQIKYCXOCHVGNUVHK3PCMFCQMANQXB">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">67</td>
+</tr>
+</table><br><a name="IDSZKNLUXMQCP3I2UFIUDGKMTWHOLT1WWA0FPUD2FF10D424EG4LGI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3243.194mil|Location2.Y=3254.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3243.194mil|Location2.Y=3254.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-10(60.822mm,83.155mm) on Top Layer And Pad U1-11(60.822mm,81.885mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3293.194mil|Location2.Y=3304.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3293.194mil|Location2.Y=3304.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-10(60.822mm,83.155mm) on Top Layer And Pad U1-9(60.822mm,84.425mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3193.194mil|Location2.Y=3204.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3193.194mil|Location2.Y=3204.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-11(60.822mm,81.885mm) on Top Layer And Pad U1-12(60.822mm,80.615mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3143.194mil|Location2.Y=3154.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3143.194mil|Location2.Y=3154.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-12(60.822mm,80.615mm) on Top Layer And Pad U1-13(60.822mm,79.345mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3093.194mil|Location2.Y=3104.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3093.194mil|Location2.Y=3104.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-13(60.822mm,79.345mm) on Top Layer And Pad U1-14(60.822mm,78.075mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2483.43mil|Location2.X=2494.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2483.43mil|Location2.X=2494.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-15(62.587mm,76.575mm) on Top Layer And Pad U1-16(63.857mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2533.43mil|Location2.X=2544.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2533.43mil|Location2.X=2544.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-16(63.857mm,76.575mm) on Top Layer And Pad U1-17(65.127mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2583.43mil|Location2.X=2594.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2583.43mil|Location2.X=2594.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-17(65.127mm,76.575mm) on Top Layer And Pad U1-18(66.397mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2633.43mil|Location2.X=2644.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2633.43mil|Location2.X=2644.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-18(66.397mm,76.575mm) on Top Layer And Pad U1-19(67.667mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.43mil|Location2.X=2694.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2683.43mil|Location2.X=2694.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-19(67.667mm,76.575mm) on Top Layer And Pad U1-20(68.937mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3643.194mil|Location2.Y=3654.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3643.194mil|Location2.Y=3654.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-2(60.822mm,93.315mm) on Top Layer And Pad U1-3(60.822mm,92.045mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3693.194mil|Location2.Y=3704.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3693.194mil|Location2.Y=3704.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-2(60.822mm,93.315mm) on Top Layer And Pad U1-GND(60.822mm,94.585mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2733.43mil|Location2.X=2744.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2733.43mil|Location2.X=2744.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-20(68.937mm,76.575mm) on Top Layer And Pad U1-21(70.207mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2783.43mil|Location2.X=2794.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2783.43mil|Location2.X=2794.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-21(70.207mm,76.575mm) on Top Layer And Pad U1-22(71.477mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.43mil|Location2.X=2844.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2833.43mil|Location2.X=2844.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-22(71.477mm,76.575mm) on Top Layer And Pad U1-23(72.747mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.43mil|Location2.X=2894.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2883.43mil|Location2.X=2894.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-23(72.747mm,76.575mm) on Top Layer And Pad U1-24(74.017mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.43mil|Location2.X=2944.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2933.43mil|Location2.X=2944.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-24(74.017mm,76.575mm) on Top Layer And Pad U1-25(75.287mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2983.43mil|Location2.X=2994.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2983.43mil|Location2.X=2994.68mil|Location1.Y=2975.611mil|Location2.Y=2986.861mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-25(75.287mm,76.575mm) on Top Layer And Pad U1-26(76.557mm,76.575mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3093.194mil|Location2.Y=3104.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3093.194mil|Location2.Y=3104.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-27(78.322mm,78.075mm) on Top Layer And Pad U1-28(78.322mm,79.345mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3143.194mil|Location2.Y=3154.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3143.194mil|Location2.Y=3154.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-28(78.322mm,79.345mm) on Top Layer And Pad U1-29(78.322mm,80.615mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3193.194mil|Location2.Y=3204.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3193.194mil|Location2.Y=3204.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-29(78.322mm,80.615mm) on Top Layer And Pad U1-30(78.322mm,81.885mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3593.194mil|Location2.Y=3604.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3593.194mil|Location2.Y=3604.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-3(60.822mm,92.045mm) on Top Layer And Pad U1-4(60.822mm,90.775mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3243.194mil|Location2.Y=3254.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3243.194mil|Location2.Y=3254.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-30(78.322mm,81.885mm) on Top Layer And Pad U1-31(78.322mm,83.155mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3293.194mil|Location2.Y=3304.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3293.194mil|Location2.Y=3304.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-31(78.322mm,83.155mm) on Top Layer And Pad U1-32(78.322mm,84.425mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3343.194mil|Location2.Y=3354.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3343.194mil|Location2.Y=3354.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-32(78.322mm,84.425mm) on Top Layer And Pad U1-33(78.322mm,85.695mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3393.194mil|Location2.Y=3404.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3393.194mil|Location2.Y=3404.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-33(78.322mm,85.695mm) on Top Layer And Pad U1-34(78.322mm,86.965mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3443.194mil|Location2.Y=3454.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3443.194mil|Location2.Y=3454.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-34(78.322mm,86.965mm) on Top Layer And Pad U1-35(78.322mm,88.235mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3493.194mil|Location2.Y=3504.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3493.194mil|Location2.Y=3504.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-35(78.322mm,88.235mm) on Top Layer And Pad U1-36(78.322mm,89.505mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3543.194mil|Location2.Y=3554.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3543.194mil|Location2.Y=3554.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-36(78.322mm,89.505mm) on Top Layer And Pad U1-37(78.322mm,90.775mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3593.194mil|Location2.Y=3604.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3593.194mil|Location2.Y=3604.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-37(78.322mm,90.775mm) on Top Layer And Pad U1-38(78.322mm,92.045mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3643.194mil|Location2.Y=3654.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3643.194mil|Location2.Y=3654.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-38(78.322mm,92.045mm) on Top Layer And Pad U1-39(78.322mm,93.315mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3693.194mil|Location2.Y=3704.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3111.446mil|Location2.X=3122.696mil|Location1.Y=3693.194mil|Location2.Y=3704.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-39(78.322mm,93.315mm) on Top Layer And Pad U1-GND(78.322mm,94.585mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3543.194mil|Location2.Y=3554.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3543.194mil|Location2.Y=3554.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-4(60.822mm,90.775mm) on Top Layer And Pad U1-5(60.822mm,89.505mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3493.194mil|Location2.Y=3504.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3493.194mil|Location2.Y=3504.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-5(60.822mm,89.505mm) on Top Layer And Pad U1-6(60.822mm,88.235mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3443.194mil|Location2.Y=3454.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3443.194mil|Location2.Y=3454.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-6(60.822mm,88.235mm) on Top Layer And Pad U1-7(60.822mm,86.965mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3393.194mil|Location2.Y=3404.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3393.194mil|Location2.Y=3404.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-7(60.822mm,86.965mm) on Top Layer And Pad U1-8(60.822mm,85.695mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3343.194mil|Location2.Y=3354.444mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.414mil|Location2.X=2366.664mil|Location1.Y=3343.194mil|Location2.Y=3354.444mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.167mm &lt; 0.254mm) Between Pad U1-8(60.822mm,85.695mm) on Top Layer And Pad U1-9(60.822mm,84.425mm) on Top Layer [Top Solder] Mask Sliver [0.167mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDE3RYCIF1CORGNSNE43WY2VSU4KZSRJ4SP0QDABRQRZUT51HGYUE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2479.69mil|Location2.X=2490.94mil|Location1.Y=3932.84mil|Location2.Y=3944.09mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2479.69mil|Location2.X=2490.94mil|Location1.Y=3932.84mil|Location2.Y=3944.09mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-1(63.627mm,99.187mm) on Top Layer And Track (62.927mm,100.187mm)(64.827mm,100.187mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2477.721mil|Location2.X=2488.971mil|Location1.Y=3867.879mil|Location2.Y=3879.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2477.721mil|Location2.X=2488.971mil|Location1.Y=3867.879mil|Location2.Y=3879.129mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-1(63.627mm,99.187mm) on Top Layer And Track (62.927mm,98.187mm)(62.927mm,100.187mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2519.06mil|Location2.X=2530.31mil|Location1.Y=3865.91mil|Location2.Y=3877.16mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2519.06mil|Location2.X=2530.31mil|Location1.Y=3865.91mil|Location2.Y=3877.16mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-1(63.627mm,99.187mm) on Top Layer And Track (62.927mm,98.187mm)(64.827mm,98.187mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2631.266mil|Location2.X=2642.516mil|Location1.Y=3921.029mil|Location2.Y=3932.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2631.266mil|Location2.X=2642.516mil|Location1.Y=3921.029mil|Location2.Y=3932.279mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-2(66.427mm,99.187mm) on Top Layer And Region (0 hole(s)) Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2599.769mil|Location2.X=2611.019mil|Location1.Y=3932.842mil|Location2.Y=3944.092mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2599.769mil|Location2.X=2611.019mil|Location1.Y=3932.842mil|Location2.Y=3944.092mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-2(66.427mm,99.187mm) on Top Layer And Track (65.227mm,100.187mm)(66.827mm,100.187mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.454mil|Location2.X=2630.704mil|Location1.Y=3865.908mil|Location2.Y=3877.158mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2619.454mil|Location2.X=2630.704mil|Location1.Y=3865.908mil|Location2.Y=3877.158mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.254mm) Between Pad D1-2(66.427mm,99.187mm) on Top Layer And Track (65.227mm,98.187mm)(66.827mm,98.187mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.449mil|Location2.X=2638.699mil|Location1.Y=3929.023mil|Location2.Y=3940.273mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.449mil|Location2.X=2638.699mil|Location1.Y=3929.023mil|Location2.Y=3940.273mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.074mm &lt; 0.254mm) Between Pad D1-2(66.427mm,99.187mm) on Top Layer And Track (66.827mm,100.187mm)(67.327mm,99.687mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.074mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.449mil|Location2.X=2638.699mil|Location1.Y=3869.726mil|Location2.Y=3880.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2627.449mil|Location2.X=2638.699mil|Location1.Y=3869.726mil|Location2.Y=3880.976mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.074mm &lt; 0.254mm) Between Pad D1-2(66.427mm,99.187mm) on Top Layer And Track (66.827mm,98.187mm)(67.327mm,98.687mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.074mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.414mil|Location2.X=2285.664mil|Location1.Y=3939.875mil|Location2.Y=3951.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2274.414mil|Location2.X=2285.664mil|Location1.Y=3939.875mil|Location2.Y=3951.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-1(58.675mm,99.187mm) on Top Layer And Track (57.786mm,100.33mm)(62.358mm,100.33mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2273.914mil|Location2.X=2285.164mil|Location1.Y=3859.375mil|Location2.Y=3870.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2273.914mil|Location2.X=2285.164mil|Location1.Y=3859.375mil|Location2.Y=3870.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-1(58.675mm,99.187mm) on Top Layer And Track (57.786mm,98.044mm)(57.786mm,100.33mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2334.414mil|Location2.X=2345.664mil|Location1.Y=3858.875mil|Location2.Y=3870.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2334.414mil|Location2.X=2345.664mil|Location1.Y=3858.875mil|Location2.Y=3870.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-1(58.675mm,99.187mm) on Top Layer And Track (57.786mm,98.044mm)(62.358mm,98.044mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.414mil|Location2.X=2395.664mil|Location1.Y=3939.875mil|Location2.Y=3951.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2384.414mil|Location2.X=2395.664mil|Location1.Y=3939.875mil|Location2.Y=3951.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-2(61.469mm,99.187mm) on Top Layer And Track (57.786mm,100.33mm)(62.358mm,100.33mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.414mil|Location2.X=2455.664mil|Location1.Y=3858.875mil|Location2.Y=3870.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.414mil|Location2.X=2455.664mil|Location1.Y=3858.875mil|Location2.Y=3870.125mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-2(61.469mm,99.187mm) on Top Layer And Track (57.786mm,98.044mm)(62.358mm,98.044mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.914mil|Location2.X=2456.164mil|Location1.Y=3859.375mil|Location2.Y=3870.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.914mil|Location2.X=2456.164mil|Location1.Y=3859.375mil|Location2.Y=3870.625mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.025mm &lt; 0.254mm) Between Pad R1-2(61.469mm,99.187mm) on Top Layer And Track (62.358mm,98.044mm)(62.358mm,100.33mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.025mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3087.761mil|Location2.X=3099.011mil|Location1.Y=3045.742mil|Location2.Y=3056.992mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3087.761mil|Location2.X=3099.011mil|Location1.Y=3045.742mil|Location2.Y=3056.992mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.241mm &lt; 0.254mm) Between Pad U1-27(78.322mm,78.075mm) on Top Layer And Track (78.572mm,76.575mm)(78.572mm,77.257mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.241mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2379.099mil|Location2.X=2390.349mil|Location1.Y=3740.448mil|Location2.Y=3751.698mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2379.099mil|Location2.X=2390.349mil|Location1.Y=3740.448mil|Location2.Y=3751.698mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.231mm &lt; 0.254mm) Between Pad U1-GND(60.822mm,94.585mm) on Top Layer And Track (60.572mm,95.393mm)(60.572mm,96.075mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.231mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDBY1B4BCT3SODBTXJC21KFKAPJP44QTCWRWTLNWORXVT41S4IH2ME"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2485.916mil|Location2.X=2497.166mil|Location1.Y=3943.885mil|Location2.Y=3955.135mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2485.916mil|Location2.X=2497.166mil|Location1.Y=3943.885mil|Location2.Y=3955.135mil|Absolute=True">Silk To Silk Clearance Constraint: (0.061mm &lt; 0.254mm) Between Text "D1" (62.934mm,100.348mm) on Top Overlay And Track (62.927mm,100.187mm)(64.827mm,100.187mm) on Top Overlay Silk Text to Silk Clearance [0.061mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2472.043mil|Location2.X=2483.293mil|Location1.Y=3943.883mil|Location2.Y=3955.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2472.043mil|Location2.X=2483.293mil|Location1.Y=3943.883mil|Location2.Y=3955.133mil|Absolute=True">Silk To Silk Clearance Constraint: (0.061mm &lt; 0.254mm) Between Text "D1" (62.934mm,100.348mm) on Top Overlay And Track (62.927mm,98.187mm)(62.927mm,100.187mm) on Top Overlay Silk Text to Silk Clearance [0.061mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3415.356mil|Location2.X=3426.606mil|Location1.Y=2701.496mil|Location2.Y=2712.746mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3415.356mil|Location2.X=3426.606mil|Location1.Y=2701.496mil|Location2.Y=2712.746mil|Absolute=True">Silk To Silk Clearance Constraint: (0.004mm &lt; 0.254mm) Between Text "IO0" (85.575mm,68.464mm) on Top Overlay And Track (86.995mm,67.564mm)(86.995mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.004mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.397mil|Location2.X=3422.647mil|Location1.Y=3789.812mil|Location2.Y=3801.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.397mil|Location2.X=3422.647mil|Location1.Y=3789.812mil|Location2.Y=3801.062mil|Absolute=True">Silk To Silk Clearance Constraint: (0.205mm &lt; 0.254mm) Between Text "IO2" (85.379mm,96.404mm) on Top Overlay And Track (86.995mm,67.564mm)(86.995mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3353.697mil|Location2.X=3366.298mil|Location1.Y=2791.245mil|Location2.Y=2802.495mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3353.697mil|Location2.X=3366.298mil|Location1.Y=2791.245mil|Location2.Y=2802.495mil|Absolute=True">Silk To Silk Clearance Constraint: (0.205mm &lt; 0.254mm) Between Text "IO35" (85.379mm,71.129mm) on Top Overlay And Track (85.217mm,70.071mm)(85.224mm,70.866mm) on Top Overlay Silk Text to Silk Clearance [0.205mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.224mil|Location2.X=3425.474mil|Location1.Y=2801.272mil|Location2.Y=2812.522mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3414.224mil|Location2.X=3425.474mil|Location1.Y=2801.272mil|Location2.Y=2812.522mil|Absolute=True">Silk To Silk Clearance Constraint: (0.062mm &lt; 0.254mm) Between Text "IO35" (85.379mm,71.129mm) on Top Overlay And Track (86.995mm,67.564mm)(86.995mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.062mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.928mil|Location2.X=3354.178mil|Location1.Y=2777.977mil|Location2.Y=2789.227mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3342.928mil|Location2.X=3354.178mil|Location1.Y=2777.977mil|Location2.Y=2789.227mil|Absolute=True">Silk To Silk Clearance Constraint: (0.139mm &lt; 0.254mm) Between Text "IO45" (83.164mm,70.496mm) on Top Overlay And Track (85.217mm,70.071mm)(85.224mm,70.866mm) on Top Overlay Silk Text to Silk Clearance [0.139mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1981.554mil|Location2.X=1992.804mil|Location1.Y=4061.534mil|Location2.Y=4072.784mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1981.554mil|Location2.X=1992.804mil|Location1.Y=4061.534mil|Location2.Y=4072.784mil|Absolute=True">Silk To Silk Clearance Constraint: (0.164mm &lt; 0.254mm) Between Text "J1" (50.222mm,103.405mm) on Top Overlay And Track (49.657mm,103.124mm)(52.197mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.164mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.53mil|Location2.X=3464.78mil|Location1.Y=4061.534mil|Location2.Y=4072.784mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3453.53mil|Location2.X=3464.78mil|Location1.Y=4061.534mil|Location2.Y=4072.784mil|Absolute=True">Silk To Silk Clearance Constraint: (0.164mm &lt; 0.254mm) Between Text "J2" (87.598mm,103.405mm) on Top Overlay And Track (86.995mm,103.124mm)(89.535mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.164mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2272.231mil|Location2.X=2283.481mil|Location1.Y=3949.232mil|Location2.Y=3960.482mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2272.231mil|Location2.X=2283.481mil|Location1.Y=3949.232mil|Location2.Y=3960.482mil|Absolute=True">Silk To Silk Clearance Constraint: (0.044mm &lt; 0.254mm) Between Text "R1" (57.728mm,100.475mm) on Top Overlay And Track (57.786mm,100.33mm)(62.358mm,100.33mm) on Top Overlay Silk Text to Silk Clearance [0.044mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2269.414mil|Location2.X=2280.664mil|Location1.Y=3949.232mil|Location2.Y=3960.482mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2269.414mil|Location2.X=2280.664mil|Location1.Y=3949.232mil|Location2.Y=3960.482mil|Absolute=True">Silk To Silk Clearance Constraint: (0.044mm &lt; 0.254mm) Between Text "R1" (57.728mm,100.475mm) on Top Overlay And Track (57.786mm,98.044mm)(57.786mm,100.33mm) on Top Overlay Silk Text to Silk Clearance [0.044mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3412.807mil|Location2.X=3424.057mil|Location1.Y=3596.496mil|Location2.Y=3607.746mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3412.807mil|Location2.X=3424.057mil|Location1.Y=3596.496mil|Location2.Y=3607.746mil|Absolute=True">Silk To Silk Clearance Constraint: (0.134mm &lt; 0.254mm) Between Text "RXD0" (84.49mm,91.197mm) on Top Overlay And Track (86.995mm,67.564mm)(86.995mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.134mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.824mil|Location2.X=3423.074mil|Location1.Y=3701.496mil|Location2.Y=3712.746mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3411.824mil|Location2.X=3423.074mil|Location1.Y=3701.496mil|Location2.Y=3712.746mil|Absolute=True">Silk To Silk Clearance Constraint: (0.184mm &lt; 0.254mm) Between Text "TXD0" (84.49mm,93.864mm) on Top Overlay And Track (86.995mm,67.564mm)(86.995mm,103.124mm) on Top Overlay Silk Text to Silk Clearance [0.184mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.876mil|Location2.X=2395.126mil|Location1.Y=3845.661mil|Location2.Y=3856.911mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=E:\OmidSpace\Modem_halfdublex\ESP32headerboard\ESP32headerboard\ESP32headerboard.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2383.876mil|Location2.X=2395.126mil|Location1.Y=3845.661mil|Location2.Y=3856.911mil|Absolute=True">Silk To Silk Clearance Constraint: (0.239mm &lt; 0.254mm) Between Text "U1" (59.309mm,96.723mm) on Top Overlay And Track (57.786mm,98.044mm)(62.358mm,98.044mm) on Top Overlay Silk Text to Silk Clearance [0.239mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

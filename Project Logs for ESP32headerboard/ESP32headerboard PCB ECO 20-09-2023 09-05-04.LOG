@@ -1,0 +1,16 @@
+Added Component: Designator=D1(LED SMD 1206 (Blue))
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Our website:"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.spaceomid.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Designed by"; Value = "MJKhodami"; VariantName = "[No Variations]"
+Added Component: Designator=R1(SMD-1206-RES)
+Add component (AddParameter): Name = "ComponentLink3Description"; Value = "Our Website:"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink3URL"; Value = "https://www.spaceomid.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Designed by"; Value = "MJKhodami"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "1K"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=NetJ1_2 Pin=R1-1
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=R1-2
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=ESP32headerboard Member=Component D1 LED SMD 1206
+Added Member To Class: ClassName=ESP32headerboard Member=Component R1 Resistor SMD 1206
